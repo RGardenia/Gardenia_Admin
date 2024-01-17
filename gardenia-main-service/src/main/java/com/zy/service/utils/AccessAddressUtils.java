@@ -1,7 +1,7 @@
 package com.zy.service.utils;
 
 import org.springframework.stereotype.Component;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * @description IP工具类

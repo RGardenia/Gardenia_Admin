@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
-import javax.servlet.ServletResponse;
+import jakarta.servlet.ServletResponse;
 import java.io.PrintWriter;
 
 /**

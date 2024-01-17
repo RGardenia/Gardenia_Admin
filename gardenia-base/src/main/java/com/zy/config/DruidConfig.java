@@ -1,6 +1,6 @@
 package com.zy.config;
 
-import javax.servlet.*;
+import jakarta.servlet.*;
 
 import com.alibaba.druid.filter.FilterChain;
 import com.alibaba.druid.util.Utils;

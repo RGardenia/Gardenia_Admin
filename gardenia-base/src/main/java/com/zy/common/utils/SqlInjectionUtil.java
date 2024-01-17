@@ -4,7 +4,7 @@ import cn.hutool.crypto.SecureUtil;
 import com.zy.common.exception.GardeniaException;
 import lombok.extern.slf4j.Slf4j;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * sql注入处理工具类

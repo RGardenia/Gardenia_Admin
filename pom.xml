@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.3</version>
+        <version>3.2.1</version>
     </parent>
 
     <groupId>com.zy</groupId>
@@ -23,10 +23,13 @@
     </modules>
 
     <properties>
-        <java.version>1.8</java.version>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <spring-boot-admin.version>2.6.3</spring-boot-admin.version>
+        <java.version>21</java.version>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <spring-boot-admin.version>3.2.1</spring-boot-admin.version>
+
+        <jakarta-servlet.version>6.1.0-M1</jakarta-servlet.version>
+        <pyTorch.version>0.22.1</pyTorch.version>
         <junit.version>4.13.2</junit.version>
         <lombok.version>1.18.16</lombok.version>
         <log4j.version>1.2.17</log4j.version>
@@ -39,7 +42,7 @@
         <spring-data-commons.version>3.0.1</spring-data-commons.version>
         <druid-boot.version>1.1.22</druid-boot.version>
         <druid.version>1.2.15</druid.version>
-        <lombok.version>1.18.22</lombok.version>
+        <lombok.version>1.18.30</lombok.version>
         <hutool.version>5.7.22</hutool.version>
         <fastjson.version>1.2.83</fastjson.version>
         <JWT.version>0.9.1</JWT.version>
@@ -57,11 +60,19 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- 适配 SpingBoot 3 -->
+            <dependency>
+                <groupId>jakarta.servlet</groupId>
+                <artifactId>jakarta.servlet-api</artifactId>
+                <version>${jakarta-servlet.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
             <!-- 集成 PyTorch -->
             <dependency>
                 <groupId>ai.djl.pytorch</groupId>
                 <artifactId>pytorch-engine</artifactId>
-                <version>0.22.1</version>
+                <version>${pyTorch.version}</version>
             </dependency>
             <dependency>
                 <groupId>ai.djl.pytorch</groupId>

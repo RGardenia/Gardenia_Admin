@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.extension.toolkit.JdbcUtils;
 import com.zy.common.constant.CommonConstant;
 import com.zy.common.constant.DataBaseConstant;
 import lombok.extern.slf4j.Slf4j;
-import sun.misc.BASE64Encoder;
 
 import javax.sql.DataSource;
 import java.io.*;
@@ -171,38 +170,37 @@ public class CommonUtils {
         return null;
     }
 
-
-    private static String NetImageToBase64(String netImagePath) {
-        String result = null;
-        final ByteArrayOutputStream data = new ByteArrayOutputStream();
-        try {
-            // 创建URL
-            URL url = new URL(netImagePath);
-            final byte[] by = new byte[1024];
-            // 创建链接
-            final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
-            conn.setConnectTimeout(5000);
-
-            try {
-                InputStream is = conn.getInputStream();
-                // 将内容读取内存中
-                int len = -1;
-                while ((len = is.read(by)) != -1) {
-                    data.write(by, 0, len);
-                }
-                // 对字节数组Base64编码
-                BASE64Encoder encoder = new BASE64Encoder();
-                result = encoder.encode(data.toByteArray());
-                // 关闭流
-                is.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return result;
-    }
+//    private static String NetImageToBase64(String netImagePath) {
+//        String result = null;
+//        final ByteArrayOutputStream data = new ByteArrayOutputStream();
+//        try {
+//            // 创建URL
+//            URL url = new URL(netImagePath);
+//            final byte[] by = new byte[1024];
+//            // 创建链接
+//            final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+//            conn.setRequestMethod("GET");
+//            conn.setConnectTimeout(5000);
+//
+//            try {
+//                InputStream is = conn.getInputStream();
+//                // 将内容读取内存中
+//                int len = -1;
+//                while ((len = is.read(by)) != -1) {
+//                    data.write(by, 0, len);
+//                }
+//                // 对字节数组Base64编码
+//                BASE64Encoder encoder = new BASE64Encoder();
+//                result = encoder.encode(data.toByteArray());
+//                // 关闭流
+//                is.close();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return result;
+//    }
 }
