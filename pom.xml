@@ -34,8 +34,9 @@
         <lombok.version>1.18.16</lombok.version>
         <log4j.version>1.2.17</log4j.version>
         <logback-core.version>1.2.3</logback-core.version>
+        <redis.version>3.2.3</redis.version>
         <mysql.version>8.0.26</mysql.version>
-        <mybatis-plus.version>3.5.1</mybatis-plus.version>
+        <mybatis-plus.version>3.5.5</mybatis-plus.version>
         <shardingSphere.version>5.2.1</shardingSphere.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
         <commons-beanutils.version>1.9.4</commons-beanutils.version>
@@ -47,6 +48,7 @@
         <fastjson.version>1.2.83</fastjson.version>
         <JWT.version>0.9.1</JWT.version>
         <knife4j.version>3.0.3</knife4j.version>
+        <springdoc.version>2.4.0</springdoc.version>
     </properties>
 
     <dependencies>
@@ -60,6 +62,13 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- Redis -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-redis</artifactId>
+                <version>${redis.version}</version>
+            </dependency>
+
             <!-- 适配 SpingBoot 3 -->
             <dependency>
                 <groupId>jakarta.servlet</groupId>
@@ -100,6 +109,12 @@
                 <artifactId>knife4j-spring-boot-starter</artifactId>
                 <version>${knife4j.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+                <version>${springdoc.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>de.codecentric</groupId>
                 <artifactId>spring-boot-admin-starter-server</artifactId>
@@ -150,7 +165,7 @@
             </dependency>
             <dependency>
                 <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
                 <version>${mybatis-plus.version}</version>
             </dependency>
             <dependency>
@@ -194,7 +209,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.5.6</version>
+                <version>3.2.1</version>
                 <configuration>
                     <fork>true</fork>
                     <addResources>true</addResources>
@@ -209,7 +224,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.2</version>
+                <version>3.2.5</version>
                 <configuration>
                     <skipTests>true</skipTests>
                 </configuration>

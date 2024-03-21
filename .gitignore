@@ -32,5 +32,6 @@ hs_err_pid*
 
 ### PROJECTS ###
 *.cmd
-
+infrastructure/Gardenia_SQL/gardenia_sql_admin_cop.sql
+infrastructure/Gardenia_SQL/sql_db_gym_managements.sql
 test/

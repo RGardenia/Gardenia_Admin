@@ -4,20 +4,19 @@ import com.zy.common.utils.Result;
 import com.zy.common.utils.query.QueryGenerator;
 import com.zy.service.sys.entity.SysLog;
 import com.zy.service.sys.service.SysLogService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import jakarta.servlet.http.HttpServletRequest;
 
 import com.alibaba.fastjson.JSONObject;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 
 import java.util.Arrays;
 
@@ -28,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @create 2023-02-44 13:57:03
  * @describe 系统日志表   前端控制器
  */
-@Api(tags = "系统日志表")
+@Tag(name = "系统日志表")
 @RestController
 @RequestMapping("/sys/sysLog01")
 public class SysLogController {
@@ -46,7 +45,7 @@ public class SysLogController {
      * @return
      */
     //@AutoLog(value = "系统日志表-分页列表查询")
-    @ApiOperation(value = "系统日志表-分页列表查询", notes = "系统日志表-分页列表查询")
+    @Operation(summary = "系统日志表-分页列表查询", description = "系统日志表-分页列表查询")
     @GetMapping(value = "/list")
     public Result<IPage<SysLog>> queryPageList(SysLog sysLog,
                                                @RequestParam(name = "pageNo", defaultValue = "1") Integer pageNo,
@@ -64,7 +63,7 @@ public class SysLogController {
      * @param sysLog01
      * @return
      */
-    @ApiOperation(value = "系统日志表-添加", notes = "系统日志表-添加")
+    @Operation(summary = "系统日志表-添加", description = "系统日志表-添加")
     //@RequiresPermissions("${entityPackage}:${tableName}:add")
     @PostMapping(value = "/add")
     public Result<String> add(@RequestBody SysLog sysLog01) {
@@ -78,7 +77,7 @@ public class SysLogController {
      * @param sysLog01
      * @return
      */
-    @ApiOperation(value = "系统日志表-编辑", notes = "系统日志表-编辑")
+    @Operation(summary = "系统日志表-编辑", description = "系统日志表-编辑")
     @RequestMapping(value = "/edit", method = {RequestMethod.PUT, RequestMethod.POST})
     public Result<String> edit(@RequestBody SysLog sysLog01) {
         sysLogService.updateById(sysLog01);
@@ -91,7 +90,7 @@ public class SysLogController {
      * @param id
      * @return
      */
-    @ApiOperation(value = "系统日志表-通过id删除", notes = "系统日志表-通过id删除")
+    @Operation(summary = "系统日志表-通过id删除", description = "系统日志表-通过id删除")
     //@RequiresPermissions("${entityPackage}:${tableName}:delete")
     @DeleteMapping(value = "/delete")
     public Result<String> delete(@RequestParam(name = "id", required = true) String id) {
@@ -105,7 +104,7 @@ public class SysLogController {
      * @param ids
      * @return
      */
-    @ApiOperation(value = "系统日志表-批量删除", notes = "系统日志表-批量删除")
+    @Operation(summary = "系统日志表-批量删除", description = "系统日志表-批量删除")
     @DeleteMapping(value = "/deleteBatch")
     public Result<String> deleteBatch(@RequestParam(name = "ids", required = true) String ids) {
         this.sysLogService.removeByIds(Arrays.asList(ids.split(",")));
@@ -119,7 +118,7 @@ public class SysLogController {
      * @return
      */
     //@AutoLog(value = "系统日志表-通过id查询")
-    @ApiOperation(value = "系统日志表-通过id查询", notes = "系统日志表-通过id查询")
+    @Operation(summary = "系统日志表-通过id查询", description = "系统日志表-通过id查询")
     @GetMapping(value = "/queryById")
     public Result<Object> queryById(@RequestParam(name = "id", required = true) String id) {
         SysLog sysLog = sysLogService.getById(id);

@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
  * @create 2023-02-44 13:57:03
  * @describe 系统日志表mapper类
  */
+@Mapper
 public interface SysLogMapper extends BaseMapper<SysLog> {
 
 }

@@ -1,10 +1,10 @@
-#
+
 ## 日志级别
 #logging:
 #  level:
 #    io.swagger.models.parameters.AbstractSerializableParameter: error
-#
-#
+
+
 ## JWT配置
 #jwt:
 #  # 密匙Key

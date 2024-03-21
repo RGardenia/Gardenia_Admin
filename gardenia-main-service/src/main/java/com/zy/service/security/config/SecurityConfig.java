@@ -5,7 +5,6 @@ import com.zy.service.security.handler.UserAccessDeniedHandler;
 import com.zy.service.security.handler.UserLoginFailureHandler;
 import com.zy.service.security.handler.UserLogoutSuccessHandler;
 import com.zy.service.security.handler.UserNotLoginHandler;
-import de.codecentric.boot.admin.server.config.AdminServerProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

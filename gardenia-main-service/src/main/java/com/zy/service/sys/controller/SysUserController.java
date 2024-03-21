@@ -2,6 +2,8 @@ package com.zy.service.sys.controller;
 
 import com.zy.common.utils.Result;
 import com.zy.common.utils.query.QueryGenerator;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +16,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import jakarta.servlet.http.HttpServletRequest;
 
 import com.alibaba.fastjson.JSONObject;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 
 import java.util.Arrays;
 
@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @create 2023-02-44 11:47:56
  * @describe 用户表   前端控制器
  */
-@Api(tags = "用户表")
+@Tag(name = "用户表")
 @RestController
 @RequestMapping("/sys/sysUser")
 public class SysUserController {
@@ -46,7 +46,7 @@ public class SysUserController {
      * @param req
      * @return
      */
-    @ApiOperation(value = "用户表-分页列表查询", notes = "用户表-分页列表查询")
+    @Operation(summary = "用户表-分页列表查询", description = "用户表-分页列表查询")
     @GetMapping(value = "/list")
     public Result<IPage<SysUser>> queryPageList(SysUser sysUser,
                                                 @RequestParam(name = "pageNo", defaultValue = "1") Integer pageNo,
@@ -64,7 +64,7 @@ public class SysUserController {
      * @param sysUser
      * @return
      */
-    @ApiOperation(value = "用户表-添加", notes = "用户表-添加")
+    @Operation(summary = "用户表-添加", description = "用户表-添加")
     @PostMapping(value = "/add")
     public Result<String> add(@RequestBody SysUser sysUser) {
         sysUserService.save(sysUser);
@@ -77,7 +77,7 @@ public class SysUserController {
      * @param sysUser
      * @return
      */
-    @ApiOperation(value = "用户表-编辑", notes = "用户表-编辑")
+    @Operation(summary = "用户表-编辑", description = "用户表-编辑")
     @RequestMapping(value = "/edit", method = {RequestMethod.PUT, RequestMethod.POST})
     public Result<String> edit(@RequestBody SysUser sysUser) {
         sysUserService.updateById(sysUser);
@@ -90,7 +90,7 @@ public class SysUserController {
      * @param id
      * @return
      */
-    @ApiOperation(value = "用户表-通过id删除", notes = "用户表-通过id删除")
+    @Operation(summary = "用户表-通过id删除", description = "用户表-通过id删除")
     //@RequiresPermissions("${entityPackage}:${tableName}:delete")
     @DeleteMapping(value = "/delete")
     public Result<String> delete(@RequestParam(name = "id", required = true) String id) {
@@ -104,7 +104,7 @@ public class SysUserController {
      * @param ids
      * @return
      */
-    @ApiOperation(value = "用户表-批量删除", notes = "用户表-批量删除")
+    @Operation(summary = "用户表-批量删除", description = "用户表-批量删除")
     //@RequiresPermissions("${entityPackage}:${tableName}:deleteBatch")
     @DeleteMapping(value = "/deleteBatch")
     public Result<String> deleteBatch(@RequestParam(name = "ids", required = true) String ids) {
@@ -119,7 +119,7 @@ public class SysUserController {
      * @return
      */
     //@AutoLog(value = "用户表-通过id查询")
-    @ApiOperation(value = "用户表-通过id查询", notes = "用户表-通过id查询")
+    @Operation(summary = "用户表-通过id查询", description = "用户表-通过id查询")
     @GetMapping(value = "/queryById")
     public Result<Object> queryById(@RequestParam(name = "id", required = true) String id) {
         SysUser sysUser = sysUserService.getById(id);

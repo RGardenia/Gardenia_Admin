@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * 单数据源配置（gardenia.datasource.open = false时生效）
+ * 单数据源配置（gardenia.datasource.open = false 时生效）
  *
  * @Author zy
  */

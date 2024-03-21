@@ -35,7 +35,7 @@ import ${superControllerClassPackage};
  * @describe $!{table.comment}   前端控制器
  */
 #if(${swagger})
-@Api(tags = "$!{table.comment}")
+@Tag(name = "$!{table.comment}")
 #end
 #if(${restControllerStyle})
 @RestController

@@ -12,6 +12,7 @@ import java.util.List;
  * @create 2023-02-44 11:47:56
  * @describe 用户表mapper类
  */
+@Mapper
 public interface SysUserMapper extends BaseMapper<SysUser> {
 
 }

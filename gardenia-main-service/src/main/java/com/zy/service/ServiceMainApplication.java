@@ -1,5 +1,6 @@
 package com.zy.service;
 
+import com.zy.common.annotation.MapperScanner;
 import com.zy.common.utils.ConvertUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
@@ -23,7 +24,7 @@ public class ServiceMainApplication {
         String port = env.getProperty("server.port");
         String path = ConvertUtils.getString(env.getProperty("server.servlet.context-path"));
         log.info("\n----------------------------------------------------------\n\t" +
-                "Application Jeecg-Boot is running! Access URLs:\n\t" +
+                "Application Gardenia-Boot is running! Access URLs:\n\t" +
                 "Local: \t\thttp://localhost:" + port + path + "/doc.html\n" +
                 "External: \thttp://" + ip + ":" + port + path + "/doc.html\n" +
                 "文档: \thttp://" + ip + ":" + port + path + "/doc.html\n" +

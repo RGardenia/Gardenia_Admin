@@ -1,6 +1,6 @@
 package com.zy.service.utils;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.SchemaProperty;
 import lombok.Data;
 
 import java.util.HashMap;
@@ -11,22 +11,24 @@ import java.util.Map;
  */
 @Data
 public class R {
-    @ApiModelProperty(value = "是否成功")
+
+    @SchemaProperty(name = "是否成功")
     private Boolean success;
 
-    @ApiModelProperty(value = "返回码")
+    @SchemaProperty(name = "返回码")
     private Integer code;
 
-    @ApiModelProperty(value = "返回消息")
+    @SchemaProperty(name = "返回消息")
     private String message;
 
-    @ApiModelProperty(value = "返回数据")
+    @SchemaProperty(name = "返回数据")
     private Map<String, Object> data = new HashMap<String, Object>();
 
     /**
-     *     构造器私有化
+     * 构造器私有化
      */
-    private R() { }
+    private R() {
+    }
 
     //成功静态方法
     public static R ok() {
@@ -61,8 +63,8 @@ public class R {
         return this;
     }
 
-    public R data(String key, Object value) {
-        this.data.put(key, value);
+    public R data(String key, Object name) {
+        this.data.put(key, name);
         return this;
     }
 

@@ -6,8 +6,8 @@ import ${pkg};
 import org.springframework.format.annotation.DateTimeFormat;
 import com.baomidou.mybatisplus.annotation.*;
 #if(${swagger})
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.Schema;
+import io.swagger.annotations.SchemaProperty;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonFormat;
 #end
@@ -36,7 +36,7 @@ import lombok.experimental.Accessors;
 @EqualsAndHashCode(callSuper = false)
 #if(${swagger})
 ##@JsonInclude(JsonInclude.Include.NON_NULL)
-@ApiModel(value = "${entity}对象", description = "$!{table.comment}")
+@Schema(value = "${entity}对象", description = "$!{table.comment}")
 #end
 #if(${superEntityClass})
 public class ${entity} extends ${superEntityClass}#if(${activeRecord})<${entity}>#end {
@@ -56,7 +56,7 @@ public class ${entity} implements Serializable{
 #end
 #if("$!field.comment" != "")
     #if(${swagger})
-    @ApiModelProperty(value = "${field.comment}")
+    @SchemaProperty(value = "${field.comment}")
     #else
     /**
      * ${field.comment}

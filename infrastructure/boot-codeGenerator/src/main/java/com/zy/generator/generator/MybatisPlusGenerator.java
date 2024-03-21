@@ -9,7 +9,6 @@ import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
-import com.sun.javafx.PlatformUtil;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

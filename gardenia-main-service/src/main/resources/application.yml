@@ -3,26 +3,44 @@ spring:
     pathmatch:
       matching-strategy: ANT_PATH_MATCHER
   ### 被监控模块配置 ###
-  boot:
-    ## 注册服务名  spring boot admin
-    admin:
-      client:
-        instance:
-          name: service-main
-          service-base-url: http://127.0.0.1:8999
-        url: http://127.0.0.1:8999
-        username: admin
-        password: admin
+#  boot:
+#    ## 注册服务名  spring boot admin
+#    admin:
+#      client:
+#        instance:
+#          name: service-main
+#          service-base-url: http://127.0.0.1:8999
+#        url: http://127.0.0.1:8999
+#        username: admin
+#        password: admin
 
 # 接口文档增强
 knife4j:
   enable: true
 #  production: true # 开启屏蔽文档资源
+springdoc:
+  api-docs:
+    enabled: true
+    path: /gardenia.html
+  swagger-ui:
+    path: /swagger-ui.html
+    disable-swagger-default-url: on
 
 # 动态配置 Mapper (占位符)
 mybatis:
   mapperScanner:
     basePackage: com.zy.service.**.mapper*
+
+# mybatis-plus 配置
+mybatis-plus:
+#  mapper-locations:
+#    - classpath:com/zy/service/**/mapper/xml/*Mapper.xml
+#  global-config:
+#    db-config:
+#      id-type: auto
+#    banner: true
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 #  endpoints config
 management:

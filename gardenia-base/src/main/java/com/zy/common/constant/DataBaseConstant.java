@@ -1,6 +1,7 @@
 package com.zy.common.constant;
 /**
  * 数据库上下文常量
+ * @author Gardenia
  */
 public interface DataBaseConstant {
 	//*********数据库类型****************************************
