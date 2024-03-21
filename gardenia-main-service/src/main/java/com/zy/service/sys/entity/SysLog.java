@@ -87,6 +87,8 @@ public class SysLog implements Serializable{
 
     @SchemaProperty(name = "创建时间")
     @TableField("create_time")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createTime;
 
     @SchemaProperty(name = "更新人")
@@ -95,6 +97,8 @@ public class SysLog implements Serializable{
 
     @SchemaProperty(name = "更新时间")
     @TableField("update_time")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date updateTime;
 
     @SchemaProperty(name = "ADMIN-1;")

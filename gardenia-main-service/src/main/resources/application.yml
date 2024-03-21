@@ -2,6 +2,9 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ANT_PATH_MATCHER
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
   ### 被监控模块配置 ###
 #  boot:
 #    ## 注册服务名  spring boot admin
@@ -66,4 +69,4 @@ jwt:
   # 刷新时间，单位天
   refreshTime: 1
   # 配置白名单（不需要认证）
-  antMatchers: /login/**
+  antMatchers: /login/**,/**

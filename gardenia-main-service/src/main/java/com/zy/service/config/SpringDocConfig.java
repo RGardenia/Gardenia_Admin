@@ -7,6 +7,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping;
+import io.swagger.v3.oas.models.ExternalDocumentation;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.info.License;
+import io.swagger.v3.oas.models.security.SecurityScheme;
+import io.swagger.v3.oas.models.Components;
 
 import java.lang.reflect.Field;
 import java.util.List;
@@ -14,25 +20,46 @@ import java.util.stream.Collectors;
 
 /**
  * @author ZhangYu
- *
+ * <p>
  * 目前Springfox-Swagger以及Knife4j提供的资源接口包括如下：
  * 资源	说明
- *      /doc.html	                                Knife4j提供的文档访问地址
- *      /v2/api-docs-ext	                        Knife4j提供的增强接口地址,自2.0.6版本后删除
- *      /swagger-resources	                        Springfox-Swagger提供的分组接口
- *      /v2/api-docs	                            Springfox-Swagger提供的分组实例详情接口
- *      /swagger-ui.html            	            Springfox-Swagger提供的文档访问地址
- *      /swagger-resources/configuration/ui	        Springfox-Swagger提供
- *      /swagger-resources/configuration/security	Springfox-Swagger提供
+ * /doc.html	                                Knife4j提供的文档访问地址
+ * /v2/api-docs-ext	                        Knife4j提供的增强接口地址,自2.0.6版本后删除
+ * /swagger-resources	                        Springfox-Swagger提供的分组接口
+ * /v2/api-docs	                            Springfox-Swagger提供的分组实例详情接口
+ * /swagger-ui.html            	            Springfox-Swagger提供的文档访问地址
+ * /swagger-resources/configuration/ui	        Springfox-Swagger提供
+ * /swagger-resources/configuration/security	Springfox-Swagger提供
  */
 @Configuration
 public class SpringDocConfig {
+
+    /**
+     * SpringDoc 标题、描述、版本等信息配置
+     *
+     * @return openApi 配置信息
+     */
+    @Bean
+    public OpenAPI springDocOpenAPI() {
+        return new OpenAPI().info(new Info()
+                        .title("网站-中心API文档")
+                        .description("接口文档说明")
+                        .version("v0.0.1")
+                        .license(new License().name("专栏")
+                                .url("http://zyGardenia.com")))
+                .externalDocs(new ExternalDocumentation()
+                        .description("项目地址")
+                        .url("http://zyGardenia.com"))
+                // 配置 Authorizations
+                .components(new Components().addSecuritySchemes("bearer-key",
+                        new SecurityScheme().type(SecurityScheme.Type.HTTP).scheme("bearer")));
+    }
 
     @Bean
     public GroupedOpenApi publicApi() {
         return GroupedOpenApi.builder()
                 .group("public")
-                .pathsToMatch("/public/**")
+                .pathsToMatch("/sys/**")
                 .build();
     }
 
