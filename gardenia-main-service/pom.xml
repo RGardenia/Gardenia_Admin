@@ -100,7 +100,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.zy.service.ServiceMainApplication</mainClass>
+                    <mainClass>com.zy.service.ServiceMainApplicationTest</mainClass>
                 </configuration>
                 <executions>
                     <execution>

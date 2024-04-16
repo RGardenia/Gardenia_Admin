@@ -61,8 +61,8 @@ public class SysUser implements Serializable{
 
     @SchemaProperty(name = "生日")
     @TableField("birthday")
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date birthday;
 
     @SchemaProperty(name = "性别(0-默认未知,1-男,2-女)")
@@ -120,8 +120,8 @@ public class SysUser implements Serializable{
 
     @SchemaProperty(name = "创建时间")
     @TableField("create_time")
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     @SchemaProperty(name = "更新人")
@@ -130,8 +130,8 @@ public class SysUser implements Serializable{
 
     @SchemaProperty(name = "更新时间")
     @TableField("update_time")
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
 
     @SchemaProperty(name = "身份（1普通成员 2上级）")

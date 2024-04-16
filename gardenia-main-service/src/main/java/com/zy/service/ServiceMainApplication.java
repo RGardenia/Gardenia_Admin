@@ -25,9 +25,9 @@ public class ServiceMainApplication {
         String path = ConvertUtils.getString(env.getProperty("server.servlet.context-path"));
         log.info("\n----------------------------------------------------------\n\t" +
                 "Application Gardenia-Boot is running! Access URLs:\n\t" +
-                "Local: \t\thttp://localhost:" + port + path + "/doc.html\n" +
-                "External: \thttp://" + ip + ":" + port + path + "/doc.html\n" +
-                "文档: \thttp://" + ip + ":" + port + path + "/doc.html\n" +
+                "Local: \t\thttp://localhost:" + port + path + "/doc.html\n\t" +
+                "External: \thttp://" + ip + ":" + port + path + "/doc.html\n\t" +
+                "文档: \t\thttp://" + ip + ":" + port + path + "/doc.html\n" +
                 "----------------------------------------------------------");
     }
 }

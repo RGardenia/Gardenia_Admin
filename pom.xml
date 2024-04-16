@@ -211,7 +211,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>3.2.1</version>
                 <configuration>
-                    <fork>true</fork>
+<!--                    <fork>true</fork>-->
                     <addResources>true</addResources>
                     <excludes>
                         <exclude>

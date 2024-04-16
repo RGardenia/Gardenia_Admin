@@ -12,6 +12,8 @@ REDIS_DB_HOST
 REDIS_DB_PORT
 NACOS_HOST
 
+Parameters: MYSQL_DB_HOST=106.14.45.61 MYSQL_DB_PORT=30169
+
 > MyBatis 配置参考 ： https://www.qb5200.com/article/477487.html
 
 ## 使用

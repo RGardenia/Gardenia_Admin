@@ -1,5 +1,6 @@
 package com.zy.service.sys.controller;
 
+import com.zy.common.base.controller.BaseController;
 import com.zy.common.utils.Result;
 import com.zy.common.utils.query.QueryGenerator;
 import io.swagger.v3.oas.annotations.Operation;
@@ -32,7 +33,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "用户表")
 @RestController
 @RequestMapping("/sys/sysUser")
-public class SysUserController {
+public class SysUserController extends BaseController<SysUser, SysUserService> {
 
     @Autowired
     private SysUserService sysUserService;

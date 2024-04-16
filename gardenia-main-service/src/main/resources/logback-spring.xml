@@ -80,7 +80,7 @@
             <!--日志文件保留天数-->
             <maxHistory>15</maxHistory>
         </rollingPolicy>
-        <!-- 此日志文件只记录warn级别的 -->
+        <!-- 此日志文件只记录 warn 级别的 -->
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>warn</level>
             <onMatch>ACCEPT</onMatch>
@@ -128,9 +128,10 @@
         第一种把<root level="INFO">改成<root level="DEBUG">这样就会打印sql，不过这样日志那边会出现很多其他消息
         第二种就是单独给mapper下目录配置DEBUG模式，代码如下，这样配置sql语句会打印，其他还是正常DEBUG级别：
      -->
-    <!--开发环境:打印控制台-->
+
+    <!-- 开发环境:打印控制台 -->
     <springProfile name="dev">
-        <!--可以输出项目中的debug日志，包括mybatis的sql日志-->
+        <!-- 可以输出项目中的debug日志，包括mybatis的sql日志 -->
         <logger name="com.zy" level="INFO"/>
 
         <!--
@@ -146,15 +147,14 @@
         </root>
     </springProfile>
 
-    <!--生产环境:输出到文件-->
+    <!-- 生产环境:输出到文件 -->
     <springProfile name="pro">
-
         <root level="INFO">
             <appender-ref ref="CONSOLE"/>
             <appender-ref ref="DEBUG_FILE"/>
             <appender-ref ref="INFO_FILE"/>
-            <appender-ref ref="ERROR_FILE"/>
             <appender-ref ref="WARN_FILE"/>
+            <appender-ref ref="ERROR_FILE"/>
         </root>
     </springProfile>
 

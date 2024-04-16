@@ -1,11 +1,14 @@
 package com.zy.service.config;
 
+import io.swagger.v3.oas.annotations.Operation;
 import org.springdoc.core.models.GroupedOpenApi;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.ReflectionUtils;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping;
 import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;
@@ -32,7 +35,14 @@ import java.util.stream.Collectors;
  * /swagger-resources/configuration/security	Springfox-Swagger提供
  */
 @Configuration
-public class SpringDocConfig {
+public class SpringDocConfig implements WebMvcConfigurer {
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
+        registry.addResourceHandler("doc.html").addResourceLocations("classpath:/META-INF/resources/");
+        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+    }
 
     /**
      * SpringDoc 标题、描述、版本等信息配置
@@ -45,14 +55,12 @@ public class SpringDocConfig {
                         .title("网站-中心API文档")
                         .description("接口文档说明")
                         .version("v0.0.1")
-                        .license(new License().name("专栏")
-                                .url("http://zyGardenia.com")))
-                .externalDocs(new ExternalDocumentation()
-                        .description("项目地址")
-                        .url("http://zyGardenia.com"))
+                        .license(new License().name("专栏").url("http://zyGardenia.com")))
+                .externalDocs(new ExternalDocumentation().description("项目地址").url("http://zyGardenia.com"))
                 // 配置 Authorizations
-                .components(new Components().addSecuritySchemes("bearer-key",
-                        new SecurityScheme().type(SecurityScheme.Type.HTTP).scheme("bearer")));
+//                .components(new Components().addSecuritySchemes("bearer-key",
+//                        new SecurityScheme().type(SecurityScheme.Type.HTTP).scheme("bearer")))
+                ;
     }
 
     @Bean
@@ -60,6 +68,8 @@ public class SpringDocConfig {
         return GroupedOpenApi.builder()
                 .group("public")
                 .pathsToMatch("/sys/**")
+//                .packagesToScan("com.zy")
+                .addOpenApiMethodFilter(method -> method.isAnnotationPresent(Operation.class))
                 .build();
     }
 
@@ -70,28 +80,6 @@ public class SpringDocConfig {
                 .pathsToMatch("/private/**")
                 .build();
     }
-
-//    @Bean
-//    public Docket webApiConfig(){
-//        return new Docket(DocumentationType.SWAGGER_2)
-//                .groupName("webApi")
-//                .apiInfo(webApiInfo())
-//                .select()
-//                .apis(RequestHandlerSelectors.basePackage("com.zy.service"))
-////                .paths(Predicates.not(PathSelectors.regex("/admin/.*")))
-////                .paths(Predicates.not(PathSelectors.regex("/error.*")))
-//                .paths(PathSelectors.any())
-//                .build();
-//    }
-
-//    private ApiInfo webApiInfo(){
-//        return new ApiInfoBuilder()
-//                .title("网站-中心API文档")
-//                .description("本文档描述了课程中心微服务接口定义")
-//                .version("1.0")
-//                .contact(new Contact("zyGardenia", "http://zyGardenia.com", "1511502172@qq.com"))
-//                .build();
-//    }
 
     /**
      * Solve the of documentationPluginsBootstrapper  "null point exception"
