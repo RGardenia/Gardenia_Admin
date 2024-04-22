@@ -28,6 +28,12 @@
             <version>1.0.0</version>
         </dependency>
 
+        <!--    MQ 消息队列    -->
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+        </dependency>
+
         <!-- 解决与 springboot 版本冲突问题-->
 <!--        <dependency>-->
 <!--            <groupId>org.yaml</groupId>-->
@@ -40,11 +46,11 @@
 <!--        </dependency>-->
 
         <!--  documentationPluginsBootstrapper  报空指针异常 -->
-        <!--        <dependency>-->
-        <!--            <groupId>com.google.guava</groupId>-->
-        <!--            <artifactId>guava</artifactId>-->
-        <!--            <version>31.1-jre</version>-->
-        <!--        </dependency>-->
+<!--                <dependency>-->
+<!--                    <groupId>com.google.guava</groupId>-->
+<!--                    <artifactId>guava</artifactId>-->
+<!--                    <version>31.1-jre</version>-->
+<!--                </dependency>-->
         <!-- JWT-->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
@@ -61,25 +67,23 @@
         </dependency>
 
         <!-- spring boot Actuator -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
+        </dependency>
 <!--        <dependency>-->
 <!--            <groupId>de.codecentric</groupId>-->
 <!--            <artifactId>spring-boot-admin-server</artifactId>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-actuator</artifactId>-->
 <!--        </dependency>-->
 <!--        <dependency>-->
 <!--            <groupId>de.codecentric</groupId>-->
 <!--            <artifactId>spring-boot-admin-starter-client</artifactId>-->
 <!--        </dependency>-->
 
-        <!--   spring-boot Test-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
         <!--   spring-boot Component-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -92,6 +96,13 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
+
+        <!--   spring-boot Test-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -100,7 +111,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.zy.service.ServiceMainApplicationTest</mainClass>
+                    <mainClass>com.zy.service.ServiceMainApplicationTests</mainClass>
                 </configuration>
                 <executions>
                     <execution>

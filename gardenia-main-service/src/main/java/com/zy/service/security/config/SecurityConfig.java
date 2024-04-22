@@ -22,6 +22,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
@@ -70,7 +71,7 @@ public class SecurityConfig {
 //                .successHandler(new UserLoginSuccessHandler()) // 配置登录成功处理类
 //                .failureHandler(new UserLoginFailureHandler())   // 配置登录失败处理类
 
-        return httpSecurity.authorizeHttpRequests((authz) -> authz
+        return httpSecurity.authorizeHttpRequests((requests) -> requests
                         .requestMatchers(JWTConfig.antMatchers.split(",")).permitAll()      // 获取白名单（不进行权限验证）
                         .requestMatchers(AUTH_WHITELIST).anonymous()        // 后端接口规范 放行
                         .anyRequest().authenticated()                       // 其他的需要登陆后才能访问
@@ -98,17 +99,9 @@ public class SecurityConfig {
 //        return pm;
     }
 
-    /**
-     * 密码处理
-     *
-     * @param auth
-     * @throws Exception
-     */
-//    @Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        auth.userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder);
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
     /**

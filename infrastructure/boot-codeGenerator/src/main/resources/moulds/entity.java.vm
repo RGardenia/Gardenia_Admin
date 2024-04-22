@@ -4,12 +4,12 @@ package ${package.Entity};
 import ${pkg};
 #end
 import org.springframework.format.annotation.DateTimeFormat;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.baomidou.mybatisplus.annotation.*;
 #if(${swagger})
 import io.swagger.annotations.Schema;
 import io.swagger.annotations.SchemaProperty;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonFormat;
 #end
 #if(${entityLombokModel})
 import lombok.Data;

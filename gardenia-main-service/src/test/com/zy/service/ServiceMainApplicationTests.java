@@ -4,20 +4,43 @@ import cn.hutool.core.io.FileUtil;
 import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpResponse;
 import cn.hutool.json.JSONUtil;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.util.StopWatch;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-class ServiceMainApplicationTest {
+class ServiceMainApplicationTests {
 
     @Test
     void contextLoads() {
+        System.out.println("Hello, World!");
+    }
+
+    @Autowired
+    KafkaTemplate kafkaTemplate;
+
+    @Test
+    void tetsKafaka() throws ExecutionException, InterruptedException {
+        StopWatch watch = new StopWatch();
+        watch.start();
+        CompletableFuture[] futures = new CompletableFuture[100];
+        for (int i = 0; i < 100; i++) {
+            CompletableFuture send = kafkaTemplate.send("news", "order.create."+i, "订单创建了："+i);
+            futures[i]=send;
+        }
+        CompletableFuture.allOf(futures).join();
+        watch.stop();
+        System.out.println("总耗时："+watch.getTotalTimeMillis());
     }
 
     // 表示单条规则的类
@@ -32,6 +55,7 @@ class ServiceMainApplicationTest {
         private List<Rule> ruleList;
     }
 
+    @DisplayName("测试外部接口🌰")
     @Test
     void testApiAvailability() {
         String url = "http://120.26.59.7:23262/docxFile2rule";

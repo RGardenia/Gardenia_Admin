@@ -1,4 +1,11 @@
 spring:
+  application:
+    name: gardenia-main-service
+  profiles:
+    active: '@profile.name@'
+    include:
+    - mysql
+    - log
   mvc:
     pathmatch:
       matching-strategy: ANT_PATH_MATCHER
@@ -16,6 +23,13 @@ spring:
 #        url: http://127.0.0.1:8999
 #        username: admin
 #        password: admin
+
+# Log
+logging:
+  files-path: logs/gardenia
+  logback:
+    rolling policy:
+      file-name-pattern:
 
 # 接口文档增强
 knife4j:

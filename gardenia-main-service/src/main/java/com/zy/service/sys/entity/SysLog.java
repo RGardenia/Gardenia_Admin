@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -29,7 +30,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @EqualsAndHashCode(callSuper = false)
 @Schema(name = "SysLog对象", description = "系统日志表")
-public class SysLog implements Serializable{
+public class SysLog implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
