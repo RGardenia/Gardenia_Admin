@@ -1,7 +1,5 @@
 package com.zy.common.base.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -28,7 +26,6 @@ public abstract class BaseEntity implements Serializable {
     /**
      * ID
      */
-    @TableId(type = IdType.ASSIGN_ID)
     @Schema(description = "ID")
     private String id;
     /**

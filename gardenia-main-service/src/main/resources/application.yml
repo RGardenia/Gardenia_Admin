@@ -6,9 +6,10 @@ spring:
     include:
     - mysql
     - log
-  mvc:
-    pathmatch:
-      matching-strategy: ANT_PATH_MATCHER
+  security:
+    user:
+      name: admin
+      password: admin
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
@@ -30,11 +31,10 @@ logging:
   logback:
     rolling policy:
       file-name-pattern:
+  level:
+    org.springframework.r2dbc: DEBUG
 
 # 接口文档增强
-knife4j:
-  enable: true
-#  production: true # 开启屏蔽文档资源
 springdoc:
   api-docs:
     enabled: true
@@ -42,6 +42,21 @@ springdoc:
   swagger-ui:
     path: /swagger-ui.html
     disable-swagger-default-url: on
+openapi: "4.5.0"
+info:
+  title: Gardenia Admin
+  description: "This is an API program for teaching"
+  version: '1.1'
+  termsOfService: "https://Gardenia.apifox.cn/"
+  contact:
+    name: "api Gardenia"
+    url: "http://Gardenia.cn"
+    email: "Gardenia@gmail.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://springdoc.org"
+paths: {}
+
 
 # 动态配置 Mapper (占位符)
 mybatis:

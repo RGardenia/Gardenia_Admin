@@ -2,8 +2,6 @@ package com.zy.config;
 
 import jakarta.servlet.*;
 
-import com.alibaba.druid.filter.FilterChain;
-import com.alibaba.druid.util.Utils;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;

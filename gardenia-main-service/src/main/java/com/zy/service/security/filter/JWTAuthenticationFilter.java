@@ -56,16 +56,16 @@ public class JWTAuthenticationFilter extends BasicAuthenticationFilter {
 					String validTime = JWTTokenUtils.getRefreshTimeByToken(token);
 					if (JWTTokenUtils.isValid(validTime)) {
 						// 刷新Token，重新存入请求头
-						String newToke = JWTTokenUtils.refreshAccessToken(token);
+//						String newToke = JWTTokenUtils.refreshAccessToken(token);
 
 						// 删除旧的Token，并保存新的Token
 						JWTTokenUtils.deleteRedisToken(token);
-						JWTTokenUtils.setTokenInfo(newToke, username, ip);
-						response.setHeader(JWTConfig.tokenHeader, newToke);
+//						JWTTokenUtils.setTokenInfo(newToke, username, ip);
+//						response.setHeader(JWTConfig.tokenHeader, newToke);
 
 						log.info("用户{}的Token已过期，但为超过刷新时间，已刷新", username);
 
-						token = newToke;
+//						token = newToke;
 					} else {
 						log.info("用户{}的Token已过期且超过刷新时间，不予刷新", username);
 

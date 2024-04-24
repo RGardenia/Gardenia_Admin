@@ -35,16 +35,16 @@
         <spring-data-commons.version>3.0.1</spring-data-commons.version>
 
         <!-- 数据库驱动 -->
-        <mysql-connector-java.version>8.0.27</mysql-connector-java.version>
+        <r2dbc-mysql.version>1.1.3</r2dbc-mysql.version>
         <postgresql.version>42.2.25</postgresql.version>
         <ojdbc6.version>11.2.0.3</ojdbc6.version>
-        <sqljdbc4.version>4.0</sqljdbc4.version>
-        <redis.version>3.2.3</redis.version>
+        <redis-starter.version>3.2.5</redis-starter.version>
         <shardingSphere.version>5.2.1</shardingSphere.version>
         <!-- 国产数据库驱动 -->
         <dm8.version>8.1.1.49</dm8.version>
 
         <!-- 持久层 -->
+        <spring-data-r2dbc.version>3.2.5</spring-data-r2dbc.version>
         <mybatis-plus.version>3.5.5</mybatis-plus.version>
         <dynamic-datasource-spring-boot-starter.version>4.1.3</dynamic-datasource-spring-boot-starter.version>
         <druid.version>1.2.22</druid.version>
@@ -62,10 +62,11 @@
 
         <!-- 日志架构 -->
         <fastjson.version>1.2.83</fastjson.version>
-        <knife4j.version>3.0.3</knife4j.version>
-        <springdoc.version>2.4.0</springdoc.version>
         <log4j.version>1.2.17</log4j.version>
         <logback-core.version>1.2.3</logback-core.version>
+        <!-- API 文档 -->
+        <knife4j.version>4.5.0</knife4j.version>
+        <springdoc.version>2.5.0</springdoc.version>
     </properties>
 
     <repositories>
@@ -101,24 +102,18 @@
     </repositories>
 
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>junit</groupId>-->
-<!--            <artifactId>junit</artifactId>-->
-<!--            <version>4.13.2</version>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
     </dependencies>
 
     <dependencyManagement>
         <dependencies>
-            <!-- Redis -->
+            <!-- Redis starter -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-redis</artifactId>
-                <version>${redis.version}</version>
+                <version>${redis-starter.version}</version>
             </dependency>
 
-            <!-- 适配 SpingBoot 3 -->
+            <!-- 适配 SpringBoot 3 -->
             <dependency>
                 <groupId>jakarta.servlet</groupId>
                 <artifactId>jakarta.servlet-api</artifactId>
@@ -155,8 +150,18 @@
             <!-- 接口文档工具 -->
             <dependency>
                 <groupId>org.springdoc</groupId>
-                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+                <artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
                 <version>${springdoc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+                <version>4.5.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-openapi3-ui</artifactId>
+                <version>${knife4j.version}</version>
             </dependency>
 
             <!-- 端点 -->
@@ -216,9 +221,15 @@
             </dependency>
             <!-- 数据源 -->
             <dependency>
-                <groupId>mysql</groupId>
-                <artifactId>mysql-connector-java</artifactId>
-                <version>${mysql-connector-java.version}</version>
+                <groupId>io.asyncer</groupId>
+                <artifactId>r2dbc-mysql</artifactId>
+                <version>${r2dbc-mysql.version}</version>
+            </dependency>
+            <!--    响应式 Spring Data R2dbc  -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-r2dbc</artifactId>
+                <version>${spring-data-r2dbc.version}</version>
             </dependency>
 
             <!--    MQ 消息队列    -->

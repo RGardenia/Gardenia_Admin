@@ -1,7 +1,6 @@
 package com.zy.common.utils.query.vo;
 
 import com.alibaba.fastjson.annotation.JSONField;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.io.Serializable;
@@ -25,11 +24,6 @@ public class Paging<T> implements Serializable {
     private List<T> records = Collections.emptyList();
 
     public Paging() {
-    }
-
-    public Paging(IPage page) {
-        this.total = page.getTotal();
-        this.records = page.getRecords();
     }
 
     public long getTotal() {

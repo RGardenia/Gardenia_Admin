@@ -1,7 +1,5 @@
 package com.zy.common.utils;
 
-import com.baomidou.mybatisplus.annotation.DbType;
-import com.baomidou.mybatisplus.extension.toolkit.JdbcUtils;
 import com.zy.common.constant.CommonConstant;
 import com.zy.common.constant.DataBaseConstant;
 import lombok.extern.slf4j.Slf4j;
@@ -66,7 +64,6 @@ public class CommonUtils {
      * 当前系统数据库类型
      */
     private static String DB_TYPE = "" ;
-    private static DbType dbTypeEnum = null;
 
     /**
      * 全局获取平台数据库类型（作废了）
@@ -85,25 +82,6 @@ public class CommonUtils {
             //e.printStackTrace();
             log.warn(e.getMessage(), e);
             return "" ;
-        }
-    }
-
-    /**
-     * 全局获取平台数据库类型（对应 Mybatis Plus 枚举）
-     *
-     * @return
-     */
-    public static DbType getDatabaseTypeEnum() {
-        if (ConvertUtils.isNotEmpty(dbTypeEnum)) {
-            return dbTypeEnum;
-        }
-        try {
-            DataSource dataSource = SpringContextUtils.getApplicationContext().getBean(DataSource.class);
-            dbTypeEnum = JdbcUtils.getDbType(dataSource.getConnection().getMetaData().getURL());
-            return dbTypeEnum;
-        } catch (SQLException e) {
-            log.warn(e.getMessage(), e);
-            return null;
         }
     }
 

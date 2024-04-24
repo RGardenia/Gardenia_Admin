@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import com.zy.service.security.beans.LoginUserDetails;
 import com.zy.service.security.config.JWTConfig;
-import com.zy.service.security.service.UserDetailsServiceImpl;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -29,9 +28,6 @@ public class JWTTokenUtils {
 	 * 时间格式化
 	 */
 	private static final DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-
-	@Autowired
-	private UserDetailsServiceImpl userDetailService;
 
 	private static JWTTokenUtils jwtTokenUtils;
 
@@ -64,13 +60,13 @@ public class JWTTokenUtils {
 	 * @param oldToken 过期但未超过刷新时间的Token
 	 * @return
 	 */
-	public static String refreshAccessToken(String oldToken) {
-		String username = JWTTokenUtils.getUserNameByToken(oldToken);
-		LoginUserDetails consumer = (LoginUserDetails) jwtTokenUtils.userDetailService
-				.loadUserByUsername(username);
-		consumer.setIp(JWTTokenUtils.getIpByToken(oldToken));
-		return createAccessToken(consumer);
-	}
+//	public static String refreshAccessToken(String oldToken) {
+//		String username = JWTTokenUtils.getUserNameByToken(oldToken);
+//		LoginUserDetails consumer = (LoginUserDetails) jwtTokenUtils.userDetailService
+//				.loadUserByUsername(username);
+//		consumer.setIp(JWTTokenUtils.getIpByToken(oldToken));
+//		return createAccessToken(consumer);
+//	}
 
 	/**
 	 * 解析 Token

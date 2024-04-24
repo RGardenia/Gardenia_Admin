@@ -2,8 +2,6 @@ package com.zy.common.exception;
 
 import com.zy.common.utils.Result;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
@@ -11,7 +9,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
-import org.springframework.web.servlet.NoHandlerFoundException;
 
 import java.util.stream.Collectors;
 
@@ -34,12 +31,6 @@ public class GardeniaExceptionHandler {
 		return Result.error(e.getMessage());
 	}
 
-	@ExceptionHandler(NoHandlerFoundException.class)
-	public Result<?> handlerNoFoundException(Exception e) {
-		log.error(e.getMessage(), e);
-		return Result.error(404, "路径不存在，请检查路径是否正确");
-	}
-
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public Result<?> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
 		BindingResult bindingResult = e.getBindingResult();
@@ -50,11 +41,11 @@ public class GardeniaExceptionHandler {
 		return Result.error(500,messages);
 	}
 
-	@ExceptionHandler(DuplicateKeyException.class)
-	public Result<?> handleDuplicateKeyException(DuplicateKeyException e){
-		log.error(e.getMessage(), e);
-		return Result.error("数据库中已存在该记录");
-	}
+//	@ExceptionHandler(DuplicateKeyException.class)
+//	public Result<?> handleDuplicateKeyException(DuplicateKeyException e){
+//		log.error(e.getMessage(), e);
+//		return Result.error("数据库中已存在该记录");
+//	}
 
 	@ExceptionHandler(Exception.class)
 	public Result<?> handleException(Exception e){
@@ -95,10 +86,10 @@ public class GardeniaExceptionHandler {
         return Result.error("文件大小超出10MB限制, 请压缩或降低文件质量! ");
     }
 
-    @ExceptionHandler(DataIntegrityViolationException.class)
-    public Result<?> handleDataIntegrityViolationException(DataIntegrityViolationException e) {
-    	log.error(e.getMessage(), e);
-        return Result.error("字段太长,超出数据库字段的长度");
-    }
+//    @ExceptionHandler(DataIntegrityViolationException.class)
+//    public Result<?> handleDataIntegrityViolationException(DataIntegrityViolationException e) {
+//    	log.error(e.getMessage(), e);
+//        return Result.error("字段太长,超出数据库字段的长度");
+//    }
 
 }
