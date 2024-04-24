@@ -38,10 +38,10 @@ knife4j:
 springdoc:
   api-docs:
     enabled: true
-    path: /gardenia.html
-  swagger-ui:
-    path: /swagger-ui.html
-    disable-swagger-default-url: on
+#    path: /gardenia.html
+#  swagger-ui:
+#    path: /swagger-ui.html
+#    disable-swagger-default-url: on
 
 # 动态配置 Mapper (占位符)
 mybatis:

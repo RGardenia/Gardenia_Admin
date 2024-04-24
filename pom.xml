@@ -62,7 +62,7 @@
 
         <!-- 日志架构 -->
         <fastjson.version>1.2.83</fastjson.version>
-        <knife4j.version>3.0.3</knife4j.version>
+        <knife4j.version>4.5.0</knife4j.version>
         <springdoc.version>2.4.0</springdoc.version>
         <log4j.version>1.2.17</log4j.version>
         <logback-core.version>1.2.3</logback-core.version>
@@ -157,6 +157,11 @@
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
                 <version>${springdoc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+                <version>${knife4j.version}</version>
             </dependency>
 
             <!-- 端点 -->

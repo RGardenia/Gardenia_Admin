@@ -59,6 +59,15 @@ public class SecurityConfig {
     }
 
     /**
+     * -- springDoc ui忽略
+     */
+    private static final String[] AUTH_WHITELIST = {
+            "/swagger-resources/**", "/swagger-ui/**",
+            "/swagger-ui.html", "/v3/**", "/v2/**",
+            "/webjars/**", "/doc.html", "/profile/**"
+    };
+
+    /**
      * 安全权限配置
      *
      * @param httpSecurity
@@ -73,7 +82,7 @@ public class SecurityConfig {
 
         return httpSecurity.authorizeHttpRequests((requests) -> requests
                         .requestMatchers(JWTConfig.antMatchers.split(",")).permitAll()      // 获取白名单（不进行权限验证）
-                        .requestMatchers(AUTH_WHITELIST).anonymous()        // 后端接口规范 放行
+                        .requestMatchers(AUTH_WHITELIST).permitAll()        // 后端接口规范 放行
                         .anyRequest().authenticated()                       // 其他的需要登陆后才能访问
                 ).formLogin(http -> http.loginProcessingUrl("/login").defaultSuccessUrl("/index").permitAll())
                 .httpBasic(http -> http.authenticationEntryPoint(new UserNotLoginHandler()))           // 配置未登录处理类
@@ -103,15 +112,6 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
-    /**
-     * -- swagger ui忽略
-     */
-    private static final String[] AUTH_WHITELIST = {
-            "/swagger-resources/**", "/swagger-ui/**",
-            "/swagger-ui.html", "/v3/**", "/v2/**",
-            "/webjars/**", "/doc.html", "/profile/**"
-    };
 
     //    @Bean
     protected PersistentTokenRepository persistentTokenRepository() {
