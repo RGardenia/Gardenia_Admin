@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import org.springdoc.core.models.GroupedOpenApi;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.ReflectionUtils;
@@ -18,6 +19,7 @@ import io.swagger.v3.oas.models.security.SecurityScheme;
 import io.swagger.v3.oas.models.Components;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,7 +37,28 @@ import java.util.stream.Collectors;
  * /swagger-resources/configuration/security	Springfox-Swagger提供
  */
 @Configuration
+@ConfigurationProperties(prefix = "swagger")
 public class SpringDocConfig implements WebMvcConfigurer {
+
+    /** 是否开启 true 开启，false 关闭*/
+    private String enabled;
+    /** 名称 */
+    private String title;
+    /** 简介 */
+    private String description;
+    /** 作者 */
+    private String author;
+    /** 版本 */
+    private String version;
+
+    /** headers 公共的默认配置 */
+//	private Map<String, String> headers = new HashMap<String, String>();
+
+    /** 全局鉴权参数 */
+    private List<String> security = new ArrayList<>();
+
+    /** 定义分组 */
+//    private List<SwaggerGroupConfigEntity> groupConfigs = new ArrayList<>();
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {

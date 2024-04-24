@@ -83,7 +83,7 @@ public class SecurityConfig {
         return httpSecurity.authorizeHttpRequests((requests) -> requests
                         .requestMatchers(JWTConfig.antMatchers.split(",")).permitAll()      // 获取白名单（不进行权限验证）
                         .requestMatchers(AUTH_WHITELIST).permitAll()        // 后端接口规范 放行
-                        .anyRequest().authenticated()                       // 其他的需要登陆后才能访问
+//                        .anyRequest().authenticated()                       // 其他的需要登陆后才能访问
                 ).formLogin(http -> http.loginProcessingUrl("/login").defaultSuccessUrl("/index").permitAll())
                 .httpBasic(http -> http.authenticationEntryPoint(new UserNotLoginHandler()))           // 配置未登录处理类
                 .exceptionHandling(http -> http.accessDeniedHandler(new UserAccessDeniedHandler()))     // 配置没有权限处理类
