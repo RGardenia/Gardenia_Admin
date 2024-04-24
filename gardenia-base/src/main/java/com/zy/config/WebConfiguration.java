@@ -15,8 +15,8 @@ import org.springframework.web.reactive.config.WebFluxConfigurer;
 @Configuration
 public class WebConfiguration {
 
-    //配置底层
-//    @Bean
+    // 配置 底层
+    @Bean
     public WebFluxConfigurer webFluxConfigurer() {
 
         return new WebFluxConfigurer() {

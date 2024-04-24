@@ -38,25 +38,33 @@ logging:
 springdoc:
   api-docs:
     enabled: true
-    path: /gardenia.html
+    groups:
+      enabled: true
+    path: /v3/api-docs
   swagger-ui:
+    enabled: true
     path: /swagger-ui.html
     disable-swagger-default-url: on
-openapi: "4.5.0"
-info:
-  title: Gardenia Admin
-  description: "This is an API program for teaching"
-  version: '1.1'
-  termsOfService: "https://Gardenia.apifox.cn/"
-  contact:
-    name: "api Gardenia"
-    url: "http://Gardenia.cn"
-    email: "Gardenia@gmail.com"
-  license:
-    name: "Apache 2.0"
-    url: "http://springdoc.org"
-paths: {}
-
+#  info:
+#    title: Gardenia 网关 Api 文档
+#    description: Gardenia 网关 Api 文档
+#    project-version: 0.0.1
+#    license: https://Gardenia.github.io
+#    license-url: https://Gardenia.github.io
+#    contact:
+#      name: milo
+#      url: http://localhost:9001
+#      email: Gardenia@gmail.com
+#    gateway:
+      # 如果Nginx设置了代理路径前缀,则此处位置必须为对应前缀 如果没有前缀,可以不设置或者为 /
+      # 如Nginx如下配置
+      # location /api{
+      #   proxy_pass http://localhost:8080;
+      #   rewrite "^/api/(.*)$" /$1 break;
+      #   proxy_set_header Host $host:$server_port;
+      # }
+#      api-path-prefix: /api
+  show-actuator: true
 
 # 动态配置 Mapper (占位符)
 mybatis:

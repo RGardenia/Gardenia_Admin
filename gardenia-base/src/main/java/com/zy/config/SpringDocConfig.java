@@ -5,6 +5,7 @@ import org.springdoc.core.models.GroupedOpenApi;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,9 +28,9 @@ import io.swagger.v3.oas.models.info.License;
  * /swagger-resources/configuration/security	Springfox-Swagger提供
  */
 @Configuration
-@AutoConfiguration
+@ConditionalOnWebApplication
 @ConditionalOnClass({OpenAPI.class})
-//@EnableConfigurationProperties(SwaggerProperties.class)
+//@EnableConfigurationProperties(DocumentInfoProperties.class)
 @ConditionalOnProperty(prefix = "springdoc.api-docs", name = "enabled", havingValue = "true", matchIfMissing = true)
 public class SpringDocConfig {
 
