@@ -41,6 +41,7 @@
             <artifactId>hutool-all</artifactId>
         </dependency>
 
+        <!--  R2dbc MySQL 数据源 -->
         <dependency>
             <groupId>io.asyncer</groupId>
             <artifactId>r2dbc-mysql</artifactId>
@@ -50,16 +51,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-r2dbc</artifactId>
         </dependency>
-        <!-- MyBatis Plus-->
-<!--        <dependency>-->
-<!--            <groupId>com.baomidou</groupId>-->
-<!--            <artifactId>mybatis-plus-spring-boot3-starter</artifactId>-->
-<!--        </dependency>-->
         <!-- Druid 数据源  引入 ShardingSphere 后， 必须使用以下依赖，这个依赖报错 Property 'sqlSessionFactory' or 'sqlSessionTemplate' are required -->
-        <!--        <dependency>-->
-        <!--            <groupId>com.alibaba</groupId>-->
-        <!--            <artifactId>druid-spring-boot-starter</artifactId>-->
-        <!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>com.alibaba</groupId>-->
+<!--            <artifactId>druid-spring-boot-starter</artifactId>-->
+<!--        </dependency>-->
 <!--        <dependency>-->
 <!--            <groupId>com.alibaba</groupId>-->
 <!--            <artifactId>druid</artifactId>-->
@@ -72,7 +68,7 @@
         </dependency>
         <dependency>
             <groupId>com.github.xiaoymin</groupId>
-            <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+            <artifactId>knife4j-openapi3-ui</artifactId>
         </dependency>
 
         <dependency>

@@ -32,8 +32,6 @@
         <pyTorch.version>0.22.1</pyTorch.version>
         <junit.version>4.13.2</junit.version>
 
-        <spring-data-commons.version>3.0.1</spring-data-commons.version>
-
         <!-- 数据库驱动 -->
         <r2dbc-mysql.version>1.1.3</r2dbc-mysql.version>
         <postgresql.version>42.2.25</postgresql.version>
@@ -65,8 +63,8 @@
         <log4j.version>1.2.17</log4j.version>
         <logback-core.version>1.2.3</logback-core.version>
         <!-- API 文档 -->
-        <knife4j.version>4.5.0</knife4j.version>
-        <springdoc.version>2.5.0</springdoc.version>
+        <knife4j.version>4.3.0</knife4j.version>
+        <springdoc.version>2.3.0</springdoc.version>
     </properties>
 
     <repositories>
@@ -155,8 +153,8 @@
             </dependency>
             <dependency>
                 <groupId>com.github.xiaoymin</groupId>
-                <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
-                <version>4.5.0</version>
+                <artifactId>knife4j-openapi3-ui</artifactId>
+                <version>${knife4j.version}</version>
             </dependency>
 
             <!-- 端点 -->
@@ -208,12 +206,7 @@
                 <artifactId>druid</artifactId>
                 <version>${druid.version}</version>
             </dependency>
-            <!-- Mybatis Plus -->
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
-                <version>${mybatis-plus.version}</version>
-            </dependency>
+
             <!-- 数据源 -->
             <dependency>
                 <groupId>io.asyncer</groupId>
@@ -244,12 +237,6 @@
                 <groupId>commons-beanutils</groupId>
                 <artifactId>commons-beanutils</artifactId>
                 <version>${commons-beanutils.version}</version>
-            </dependency>
-            <!--  工具 -->
-            <dependency>
-                <groupId>org.springframework.data</groupId>
-                <artifactId>spring-data-commons</artifactId>
-                <version>${spring-data-commons.version}</version>
             </dependency>
             <!-- JSON工具 -->
             <dependency>

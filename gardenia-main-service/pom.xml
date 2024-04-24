@@ -34,20 +34,6 @@
 <!--            <artifactId>spring-kafka</artifactId>-->
 <!--        </dependency>-->
 
-        <!-- 解决与 springboot 版本冲突问题-->
-<!--        <dependency>-->
-<!--            <groupId>org.yaml</groupId>-->
-<!--            <artifactId>snakeyaml</artifactId>-->
-<!--            <version>1.33</version>-->
-<!--        </dependency>-->
-
-        <!--  documentationPluginsBootstrapper  报空指针异常 -->
-<!--                <dependency>-->
-<!--                    <groupId>com.google.guava</groupId>-->
-<!--                    <artifactId>guava</artifactId>-->
-<!--                    <version>31.1-jre</version>-->
-<!--                </dependency>-->
-        <!--   JWT security   -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>

@@ -22,7 +22,7 @@ import reactor.core.publisher.Flux;
 /**
  * @auther zy-栀
  * @create 2023-02-44 11:47:56
- * @describe 用户表   前端控制器
+ * @describe 用户表
  */
 @Tag(name = "用户表")
 @RestController

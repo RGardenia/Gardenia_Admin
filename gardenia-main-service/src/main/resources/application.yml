@@ -30,7 +30,7 @@ logging:
   files-path: logs/gardenia
   logback:
     rolling policy:
-      file-name-pattern:
+#      file-name-pattern:
   level:
     org.springframework.r2dbc: DEBUG
 
@@ -65,22 +65,6 @@ springdoc:
       # }
 #      api-path-prefix: /api
   show-actuator: true
-
-# 动态配置 Mapper (占位符)
-mybatis:
-  mapperScanner:
-    basePackage: com.zy.service.**.mapper*
-
-# mybatis-plus 配置
-mybatis-plus:
-#  mapper-locations:
-#    - classpath:com/zy/service/**/mapper/xml/*Mapper.xml
-#  global-config:
-#    db-config:
-#      id-type: auto
-#    banner: true
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 #  endpoints config
 management:

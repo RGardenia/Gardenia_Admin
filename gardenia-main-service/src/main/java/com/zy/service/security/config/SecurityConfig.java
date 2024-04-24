@@ -1,7 +1,6 @@
 package com.zy.service.security.config;
 
 import com.zy.service.security.handler.UserAccessDeniedHandler;
-import com.zy.service.security.handler.UserLoginSuccessHandler;
 import com.zy.service.security.handler.UserLogoutSuccessHandler;
 import com.zy.service.security.handler.UserNotLoginHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,25 +9,17 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UserDetailsRepositoryReactiveAuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableReactiveMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
-import org.springframework.security.core.userdetails.ReactiveUserDetailsService;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.server.SecurityWebFilterChain;
-
-import javax.sql.DataSource;
 
 /**
  * Security配置类
@@ -37,11 +28,11 @@ import javax.sql.DataSource;
  * @since 2019-11-18
  */
 @Configuration
+@EnableWebFluxSecurity
 @EnableReactiveMethodSecurity
-//@EnableWebSecurity
 public class SecurityConfig {
 
-    @Autowired
+//    @Autowired
 //    private UserDetailsService userDetailsService;
 
 //    @Autowired
@@ -57,18 +48,17 @@ public class SecurityConfig {
     SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity serverHttpSecurity) {
 
         serverHttpSecurity.authorizeExchange(authorize -> {
-            //1.1、允许所有人都访问静态资源；
             authorize.matchers(PathRequest.toStaticResources()
                     .atCommonLocations()).permitAll();
             authorize.pathMatchers(AUTH_WHITELIST).permitAll();
             authorize.pathMatchers("/**").permitAll();
-            //1.2、剩下的所有请求都需要认证（登录）
+            // 剩下的所有请求都需要认证（登录）
 //            authorize.anyExchange().authenticated();
         });
 
         // 2、开启默认的表单登录
         serverHttpSecurity.formLogin(formLoginSpec -> {
-            formLoginSpec.loginPage("/haha");
+            formLoginSpec.loginPage("/index");
 //            formLoginSpec.authenticationSuccessHandler(new UserLoginSuccessHandler());
         });
 

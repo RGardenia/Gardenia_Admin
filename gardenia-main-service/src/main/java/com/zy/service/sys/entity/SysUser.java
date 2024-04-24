@@ -6,9 +6,8 @@ import java.time.Instant;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.media.SchemaProperty;
 import org.springframework.data.annotation.Id;
-//import org.springframework.data.relational.core.mapping.Table;
+import org.springframework.data.relational.core.mapping.Table;
 import org.springframework.format.annotation.DateTimeFormat;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -22,7 +21,7 @@ import lombok.experimental.Accessors;
  */
 @Data
 @ToString
-//@Table("sys_user")
+@Table("sys_user")
 @Accessors(chain = true)
 @EqualsAndHashCode(callSuper = false)
 @Schema(name = "SysUser对象", description = "用户表")

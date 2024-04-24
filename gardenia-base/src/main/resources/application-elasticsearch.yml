@@ -1,7 +1,0 @@
-# elasticsearch 配置
-#spring:
-#  data:
-#    elasticsearch:
-#      client: localhost
-#        reactive:
-#          connection-timeout: 1s

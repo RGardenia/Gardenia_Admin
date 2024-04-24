@@ -5,7 +5,7 @@ import java.time.Instant;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.media.SchemaProperty;
-//import org.springframework.data.relational.core.mapping.Table;
+import org.springframework.data.relational.core.mapping.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -21,7 +21,7 @@ import lombok.experimental.Accessors;
  */
 @Data
 @ToString
-//@Table("sys_log")
+@Table("sys_log")
 @Accessors(chain = true)
 @EqualsAndHashCode(callSuper = false)
 @Schema(name = "SysLog对象", description = "系统日志表")
