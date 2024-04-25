@@ -1,34 +1,41 @@
 package com.zy.service.sys.controller;
 
+import com.zy.common.utils.ApiResponse;
+import com.zy.service.sys.service.SysUserService;
 import io.netty.handler.codec.http.HttpMethod;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+
 import com.zy.service.sys.entity.SysUser;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebSession;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 /**
  * @auther zy-栀
  * @create 2023-02-44 11:47:56
  * @describe 用户表
  */
-@Tag(name = "用户表")
+@Tag(name = "用户表", description = "用户管理")
 @RestController
 @RequestMapping("/sys/sysUser")
 public class SysUserController {
 
+    @Autowired
+    private SysUserService sysUserService;
 
     /**
      * 分页列表查询
@@ -36,19 +43,18 @@ public class SysUserController {
      * @param sysUser  列表查询
      * @param pageNo
      * @param pageSize
-     * @param req
      * @return
      */
     @Operation(summary = "用户表-分页列表查询", description = "用户表-分页列表查询")
     @GetMapping(value = "/list")
-    public Flux<ArrayList<SysUser>> queryPageList(SysUser sysUser,
-                                                @RequestParam(name = "pageNo", defaultValue = "1") Integer pageNo,
-                                                @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize,
-                                                HttpServletRequest req) {
+    public Mono<ApiResponse<List<SysUser>>> queryPageList(SysUser sysUser,
+                                                          @RequestParam(name = "pageNo", defaultValue = "1") Integer pageNo,
+                                                          @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize) {
 //        QueryWrapper<SysUser> queryWrapper = QueryGenerator.initQueryWrapper(sysUser, req.getParameterMap());
 //        Page<SysUser> page = new Page<SysUser>(pageNo, pageSize);
 //        IPage<SysUser> pageList = sysUserService.page(page, queryWrapper);
-        return Flux.just(new ArrayList<SysUser>());
+        Flux<SysUser> userInfo = sysUserService.getAllUserInfo();
+        return userInfo.collectList().map(user -> ApiResponse.success(user));
     }
 
     /**
@@ -59,9 +65,9 @@ public class SysUserController {
      */
     @Operation(summary = "用户表-添加", description = "用户表-添加")
     @PostMapping(value = "/add")
-    public Flux<String> add(@RequestBody SysUser sysUser) {
-//        sysUserService.save(sysUser);
-        return Flux.just("添加成功！");
+    public Mono<ApiResponse> add(@RequestBody SysUser sysUser) {
+        Mono<SysUser> userMono = sysUserService.saveUser(sysUser);
+        return userMono.thenReturn(ApiResponse.success());
     }
 
     /**
@@ -71,9 +77,9 @@ public class SysUserController {
      */
     @Operation(summary = "用户表-编辑", description = "用户表-编辑")
     @RequestMapping(value = "/edit", method = {RequestMethod.PUT, RequestMethod.POST})
-    public Flux<String> edit(@RequestBody SysUser sysUser) {
-//        sysUserService.updateById(sysUser);
-        return Flux.just("编辑成功!");
+    public Mono<ApiResponse> edit(@RequestBody SysUser sysUser) {
+        Mono<SysUser> userMono = sysUserService.updateUser(sysUser);
+        return userMono.thenReturn(ApiResponse.success());
     }
 
     /**
@@ -82,12 +88,11 @@ public class SysUserController {
      * @param id
      * @return
      */
-    @Operation(summary = "用户表-通过id删除", description = "用户表-通过id删除")
-    //@RequiresPermissions("${entityPackage}:${tableName}:delete")
+    @Operation(summary = "用户表-通过 id 删除", description = "用户表-通过 id 删除")
     @DeleteMapping(value = "/delete")
-    public Flux<String> delete(@RequestParam(name = "id", required = true) String id) {
-//        sysUserService.removeById(id);
-        return Flux.just("删除成功!");
+    public Mono<ApiResponse> delete(@RequestParam(name = "id", required = true) String id) {
+        Mono<Void> userMono = sysUserService.deleteUser(id);
+        return userMono.thenReturn(ApiResponse.success());
     }
 
     /**
@@ -113,25 +118,23 @@ public class SysUserController {
     //@AutoLog(value = "用户表-通过id查询")
     @Operation(summary = "用户表-通过id查询", description = "用户表-通过id查询")
     @GetMapping(value = "/queryById")
-    public Flux<Object> queryById(@RequestParam(name = "id", required = true) String id,
-                                  ServerWebExchange exchange,
-                                  WebSession webSession,
-                                  HttpMethod method,
-                                  HttpEntity<String> entity,
-                                  @RequestBody String s){
-//        SysUser sysUser = sysUserService.getById(id);
-//        if (sysUser == null) {
-//            return Flux.just("未找到对应数据");
-//        }
+    public Mono<ApiResponse<SysUser>> queryById(@RequestParam(name = "id", required = true) String id){
+//                                  ServerWebExchange exchange,
+//                                  WebSession webSession,
+//                                  HttpMethod method,
+//                                  HttpEntity<String> entity,
+//                                  @RequestBody String s
+        Mono<SysUser> user = sysUserService.getUserById(id);
+        Mono<ApiResponse<SysUser>> userMono = user.map(ApiResponse::success);
+        return userMono;
 
-        ServerHttpRequest request = exchange.getRequest();
-        ServerHttpResponse response = exchange.getResponse();
-        String name = method.name();
+//        ServerHttpRequest request = exchange.getRequest();
+//        ServerHttpResponse response = exchange.getResponse();
+//        String name = method.name();
+//
+//        Object gardenia = webSession.getAttribute("Gardenia");
+//        webSession.getAttributes().put("Gardenia", "zy");
 
-        Object gardenia = webSession.getAttribute("Gardenia");
-        webSession.getAttributes().put("Gardenia", "zy");
-
-        return Flux.empty();
     }
 
 }

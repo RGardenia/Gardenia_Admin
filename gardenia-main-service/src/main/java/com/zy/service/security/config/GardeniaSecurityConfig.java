@@ -1,9 +1,5 @@
 package com.zy.service.security.config;
 
-import com.zy.service.security.handler.UserAccessDeniedHandler;
-import com.zy.service.security.handler.UserLogoutSuccessHandler;
-import com.zy.service.security.handler.UserNotLoginHandler;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.reactive.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,13 +26,10 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 @Configuration
 @EnableWebFluxSecurity
 @EnableReactiveMethodSecurity
-public class SecurityConfig {
+public class GardeniaSecurityConfig {
 
 //    @Autowired
-//    private UserDetailsService userDetailsService;
-
-//    @Autowired
-//    ReactiveUserDetailsService appReactiveUserDetailsService;
+//    ReactiveUserDetailsService gardeniaReactiveUserDetailsService;
 
     private static final String[] AUTH_WHITELIST = {
             "/swagger-resources/**", "/swagger-ui/**",
@@ -93,10 +86,10 @@ public class SecurityConfig {
                         .requestMatchers(AUTH_WHITELIST).anonymous()        // 后端接口规范 放行
                         .anyRequest().authenticated())                       // 其他的需要登陆后才能访问
                 .formLogin(http -> http.loginProcessingUrl("/login").defaultSuccessUrl("/index").permitAll())
-                .httpBasic(http -> http.authenticationEntryPoint(new UserNotLoginHandler()))           // 配置未登录处理类
-                .exceptionHandling(http -> http.accessDeniedHandler(new UserAccessDeniedHandler()))     // 配置没有权限处理类
-
-                .logout(http -> http.logoutUrl("/logout").logoutSuccessHandler(new UserLogoutSuccessHandler())) // 配置登出地址 & 登出处理器
+//                .httpBasic(http -> http.authenticationEntryPoint(new UserNotLoginHandler()))           // 配置未登录处理类
+//                .exceptionHandling(http -> http.accessDeniedHandler(new UserAccessDeniedHandler()))     // 配置没有权限处理类
+//
+//                .logout(http -> http.logoutUrl("/logout").logoutSuccessHandler(new UserLogoutSuccessHandler())) // 配置登出地址 & 登出处理器
 //                .addFilterBefore(new JWTAuthenticationFilter(this.authenticationManager()), UsernamePasswordAuthenticationFilter.class)
 //                .addFilter(new JWTAuthenticationFilter(this.authenticationManager())) // 添加JWT过滤器
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))   // 禁用session（使用Token认证）

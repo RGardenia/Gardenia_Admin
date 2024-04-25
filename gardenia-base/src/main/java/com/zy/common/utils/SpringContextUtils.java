@@ -7,8 +7,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import jakarta.servlet.http.HttpServletRequest;
-
 @Component
 public class SpringContextUtils implements ApplicationContextAware {
 
@@ -34,14 +32,14 @@ public class SpringContextUtils implements ApplicationContextAware {
     /**
      * 获取HttpServletRequest
      */
-    public static HttpServletRequest getHttpServletRequest() {
-        return ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-    }
-
-    public static String getOrigin() {
-        HttpServletRequest request = getHttpServletRequest();
-        return request.getHeader("Origin");
-    }
+//    public static HttpServletRequest getHttpServletRequest() {
+//        return ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+//    }
+//
+//    public static String getOrigin() {
+//        HttpServletRequest request = getHttpServletRequest();
+//        return request.getHeader("Origin");
+//    }
 
     /**
      * 通过name获取 Bean.

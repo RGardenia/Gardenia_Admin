@@ -4,8 +4,6 @@ import cn.hutool.crypto.SecureUtil;
 import com.zy.common.exception.GardeniaException;
 import lombok.extern.slf4j.Slf4j;
 
-import jakarta.servlet.http.HttpServletRequest;
-
 /**
  * sql注入处理工具类
  *
@@ -27,17 +25,17 @@ public class SqlInjectionUtil {
      * @param request:
      * @Return: void
      */
-    public static void checkDictTableSign(String dictCode, String sign, HttpServletRequest request) {
-        //表字典SQL注入漏洞,签名校验
-        String accessToken = request.getHeader("X-Access-Token");
-        String signStr = dictCode + SqlInjectionUtil.TABLE_DICT_SIGN_SALT + accessToken;
-        String javaSign = SecureUtil.md5(signStr);
-        if (!javaSign.equals(sign)) {
-            log.error("表字典，SQL注入漏洞签名校验失败 ：" + sign + "!=" + javaSign + ",dictCode=" + dictCode);
-            throw new GardeniaException("无权限访问！");
-        }
-        log.info(" 表字典，SQL注入漏洞签名校验成功！sign=" + sign + ",dictCode=" + dictCode);
-    }
+//    public static void checkDictTableSign(String dictCode, String sign, HttpServletRequest request) {
+//        //表字典SQL注入漏洞,签名校验
+//        String accessToken = request.getHeader("X-Access-Token");
+//        String signStr = dictCode + SqlInjectionUtil.TABLE_DICT_SIGN_SALT + accessToken;
+//        String javaSign = SecureUtil.md5(signStr);
+//        if (!javaSign.equals(sign)) {
+//            log.error("表字典，SQL注入漏洞签名校验失败 ：" + sign + "!=" + javaSign + ",dictCode=" + dictCode);
+//            throw new GardeniaException("无权限访问！");
+//        }
+//        log.info(" 表字典，SQL注入漏洞签名校验成功！sign=" + sign + ",dictCode=" + dictCode);
+//    }
 
 
     /**
